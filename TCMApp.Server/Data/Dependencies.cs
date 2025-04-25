@@ -1,23 +1,29 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TCMApp.Server.Core.Entities;
+using TCMApp.Server.Core.Interfaces;
+using TCMApp.Server.Data.Repositories;
 
 namespace TCMApp.Server.Data;
 
 public static class Dependencies
 {
-    public static void AddDbContext(this WebApplicationBuilder builder)
+    public static void ConfigureDataDependencies(this WebApplicationBuilder builder)
     {
-        if (!builder.Environment.IsDevelopment())
-        {
-            builder.Services.AddDbContext<ApplicationContext>(options =>
-                options.UseInMemoryDatabase("TrainDatabase"));
-        }
-        else
-        {
-            builder.Services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(
-                    builder.Configuration.GetConnectionString("DefaultConnection") 
-                    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
-        }
+        builder.Services.AddDbContext<ApplicationContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
+        builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+        builder.Services.AddScoped<IRepository<TrainComponent>, TrainComponentRepository>();
+    }
+
+    public static void ApplyMigrations(this IApplicationBuilder app)
+    {
+        using IServiceScope scope = app.ApplicationServices.CreateScope();
+
+        using ApplicationContext context = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+
+        context.Database.EnsureCreated();
+        context.Database.Migrate();
     }
 }

@@ -1,4 +1,3 @@
-
 using TCMApp.Server.Data;
 
 namespace TCMApp.Server
@@ -16,7 +15,8 @@ namespace TCMApp.Server
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.AddDbContext();
+            builder.Services.ConfigureServices();
+            builder.ConfigureDataDependencies();
 
             var app = builder.Build();
 
@@ -29,6 +29,7 @@ namespace TCMApp.Server
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.ApplyMigrations();
 
             app.UseHttpsRedirection();
 

@@ -7,7 +7,7 @@ namespace TCMApp.Server.Data.Repositories;
 public class TrainComponentRepository(ApplicationContext context) : BaseRepository<TrainComponent>(context)
 {
     public override async Task<IEnumerable<TrainComponent>> GetAll(
-        Specification<TrainComponent> specification, 
+        Specification<TrainComponent> specification,
         CancellationToken cancellationToken)
     {
         return await GetIncludableQueryable()

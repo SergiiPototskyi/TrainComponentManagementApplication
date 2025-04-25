@@ -29,9 +29,4 @@
     </ProjectReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Core\DTOs\" />
-  </ItemGroup>
-
 </Project>
