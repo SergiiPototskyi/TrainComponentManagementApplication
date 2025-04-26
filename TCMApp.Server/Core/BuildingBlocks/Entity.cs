@@ -1,6 +1,7 @@
-﻿namespace TCMApp.Server.Core.BuildingBlocks;
-
-public abstract class Entity
+﻿namespace TCMApp.Server.Core.BuildingBlocks
 {
-    public virtual int Id { get; init; }
+    public abstract class Entity
+    {
+        public virtual int Id { get; init; }
+    }
 }

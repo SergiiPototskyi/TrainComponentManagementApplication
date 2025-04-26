@@ -1,11 +1,12 @@
 ﻿using TCMApp.Server.Core.Interfaces;
 
-namespace TCMApp.Server.Data;
-
-public class UnitOfWork(ApplicationContext context) : IUnitOfWork
+namespace TCMApp.Server.Data
 {
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+    public class UnitOfWork(ApplicationContext context) : IUnitOfWork
     {
-        return await context.SaveChangesAsync(cancellationToken);
+        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            return await context.SaveChangesAsync(cancellationToken);
+        }
     }
 }

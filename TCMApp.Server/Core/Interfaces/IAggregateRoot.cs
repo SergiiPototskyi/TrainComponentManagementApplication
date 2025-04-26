@@ -1,6 +1,7 @@
-﻿namespace TCMApp.Server.Core.Interfaces;
-
-public interface IAggregateRoot
+﻿namespace TCMApp.Server.Core.Interfaces
 {
-    public int Id { get; init; }
+    public interface IAggregateRoot
+    {
+        public int Id { get; init; }
+    }
 }

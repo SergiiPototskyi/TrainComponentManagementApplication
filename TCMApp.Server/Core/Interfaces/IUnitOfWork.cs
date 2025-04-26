@@ -1,6 +1,7 @@
-﻿namespace TCMApp.Server.Core.Interfaces;
-
-public interface IUnitOfWork
+﻿namespace TCMApp.Server.Core.Interfaces
 {
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+    public interface IUnitOfWork
+    {
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+    }
 }

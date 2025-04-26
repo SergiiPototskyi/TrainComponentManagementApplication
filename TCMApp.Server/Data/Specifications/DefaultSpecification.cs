@@ -1,11 +1,12 @@
 ﻿using System.Linq.Expressions;
 
-namespace TCMApp.Server.Data.Specifications;
-
-public class DefaultSpecification<T> : Specification<T>
+namespace TCMApp.Server.Data.Specifications
 {
-    public override Expression<Func<T, bool>> ToExpression()
+    public class DefaultSpecification<T> : Specification<T>
     {
-        return _ => true; // Always return true for all entities
+        public override Expression<Func<T, bool>> ToExpression()
+        {
+            return _ => true; // Always return true for all entities
+        }
     }
 }

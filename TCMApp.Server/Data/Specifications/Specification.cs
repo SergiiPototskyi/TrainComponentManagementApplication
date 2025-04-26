@@ -1,38 +1,39 @@
 ﻿using System.Linq.Expressions;
 
-namespace TCMApp.Server.Data.Specifications;
-
-public abstract class Specification<T>
+namespace TCMApp.Server.Data.Specifications
 {
-    public abstract Expression<Func<T, bool>> ToExpression();
-
-    public Specification<T> And(Specification<T> other)
+    public abstract class Specification<T>
     {
-        var thisExpression = ToExpression();
-        var otherExpression = other.ToExpression();
-        var parameter = Expression.Parameter(typeof(T));
+        public abstract Expression<Func<T, bool>> ToExpression();
 
-        var combinedExpression = Expression.Lambda<Func<T, bool>>(
-            Expression.AndAlso(
-                Expression.Invoke(thisExpression, parameter),
-                Expression.Invoke(otherExpression, parameter)
-            ),
-            parameter);
+        public Specification<T> And(Specification<T> other)
+        {
+            var thisExpression = ToExpression();
+            var otherExpression = other.ToExpression();
+            var parameter = Expression.Parameter(typeof(T));
 
-        return new ExpressionSpecification<T>(combinedExpression);
+            var combinedExpression = Expression.Lambda<Func<T, bool>>(
+                Expression.AndAlso(
+                    Expression.Invoke(thisExpression, parameter),
+                    Expression.Invoke(otherExpression, parameter)
+                ),
+                parameter);
+
+            return new ExpressionSpecification<T>(combinedExpression);
+        }
+
+        // You can add Or, Not, etc., similarly.
     }
 
-    // You can add Or, Not, etc., similarly.
-}
-
-public class ExpressionSpecification<T> : Specification<T>
-{
-    private readonly Expression<Func<T, bool>> _expression;
-
-    public ExpressionSpecification(Expression<Func<T, bool>> expression)
+    public class ExpressionSpecification<T> : Specification<T>
     {
-        _expression = expression;
-    }
+        private readonly Expression<Func<T, bool>> _expression;
 
-    public override Expression<Func<T, bool>> ToExpression() => _expression;
+        public ExpressionSpecification(Expression<Func<T, bool>> expression)
+        {
+            _expression = expression;
+        }
+
+        public override Expression<Func<T, bool>> ToExpression() => _expression;
+    }
 }

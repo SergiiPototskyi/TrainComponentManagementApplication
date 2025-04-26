@@ -1,8 +1,9 @@
-﻿using TCMApp.Server.Core.Contracts;
+﻿using TCMApp.Server.UseCases.Models;
 
-namespace TCMApp.Server.Core.Interfaces;
-
-public interface ITrainComponentService
+namespace TCMApp.Server.Core.Interfaces
 {
-    Task<IReadOnlyCollection<TrainComponentContract>> GetTrainComponentsAsync(CancellationToken cancellationToken);
+    public interface ITrainComponentService
+    {
+        Task<IReadOnlyCollection<TrainComponentBase>> GetTrainComponentsAsync(CancellationToken cancellationToken);
+    }
 }

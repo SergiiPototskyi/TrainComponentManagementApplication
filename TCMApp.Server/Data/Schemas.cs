@@ -1,6 +1,7 @@
-﻿namespace TCMApp.Server.Data;
-
-public static class Schemas
+﻿namespace TCMApp.Server.Data
 {
-    public const string Default = "tcm";
+    public static class Schemas
+    {
+        public const string Default = "tcm";
+    }
 }

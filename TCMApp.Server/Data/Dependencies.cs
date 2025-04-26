@@ -1,29 +1,29 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TCMApp.Server.Core.Entities;
 using TCMApp.Server.Core.Interfaces;
 using TCMApp.Server.Data.Repositories;
 
-namespace TCMApp.Server.Data;
-
-public static class Dependencies
+namespace TCMApp.Server.Data
 {
-    public static void ConfigureDataDependencies(this WebApplicationBuilder builder)
+    public static class Dependencies
     {
-        builder.Services.AddDbContext<ApplicationContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")
-                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
+        public static void ConfigureDataDependencies(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")
+                    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
-        builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-        builder.Services.AddScoped<IRepository<TrainComponent>, TrainComponentRepository>();
-    }
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<ITrainComponentRepository, TrainComponentRepository>();
+        }
 
-    public static void ApplyMigrations(this IApplicationBuilder app)
-    {
-        using IServiceScope scope = app.ApplicationServices.CreateScope();
+        public static void ApplyMigrations(this IApplicationBuilder app)
+        {
+            using IServiceScope scope = app.ApplicationServices.CreateScope();
 
-        using ApplicationContext context = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+            using ApplicationContext context = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
 
-        context.Database.EnsureCreated();
-        context.Database.Migrate();
+            context.Database.EnsureCreated();
+            context.Database.Migrate();
+        }
     }
 }
