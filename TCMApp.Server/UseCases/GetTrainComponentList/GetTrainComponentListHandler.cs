@@ -16,8 +16,19 @@ namespace TCMApp.Server.UseCases.GetTrainComponentList
         {
             try
             {
-                var result = await repository.GetAll(new DefaultSpecification<TrainComponent>(), cancellationToken);
-                return Result<GetTrainComponentListResponse>.Success(new GetTrainComponentListResponse(result.Select(mapper.Map)));
+                var searchSpecification = new SearchSpecification(request.Search);
+                var trainComponents = await repository.GetPaginatedListAsync(
+                    searchSpecification, 
+                    request.PageSize,
+                    request.PageNumber,
+                    request.SortColumn,
+                    request.SortOrder,
+                    cancellationToken);
+
+                var totalCount = repository.GetTotalCount(searchSpecification);
+
+                var result = new GetTrainComponentListResponse(totalCount, trainComponents.Select(mapper.Map));
+                return Result<GetTrainComponentListResponse>.Success(result);
             }
             catch (Exception ex)
             {
@@ -26,7 +37,12 @@ namespace TCMApp.Server.UseCases.GetTrainComponentList
         }
     }
 
-    public record GetTrainComponentListRequest(string? Search = null) : IRequest<Result<GetTrainComponentListResponse>>;
+    public record GetTrainComponentListRequest(
+        string? Search = null,
+        int PageSize = 10,
+        int PageNumber = 1,
+        string SortColumn = nameof(TrainComponent.Name),
+        string SortOrder = "asc") : IRequest<Result<GetTrainComponentListResponse>>;
 
-    public record GetTrainComponentListResponse(IEnumerable<TrainComponentResponse> TrainComponents);
+    public record GetTrainComponentListResponse(int TotalCount, IEnumerable<TrainComponentResponse> Data);
 }

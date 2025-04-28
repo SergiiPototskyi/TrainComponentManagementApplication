@@ -1,4 +1,5 @@
-﻿using TCMApp.Server.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using TCMApp.Server.Core.Entities;
 using TCMApp.Server.Data.Specifications;
 
 namespace TCMApp.Server.Core.Interfaces;
@@ -12,4 +13,14 @@ public interface ITrainComponentRepository
     void Add(TrainComponent trainComponent);
     void Update(TrainComponent trainComponent);
     void Delete(TrainComponent trainComponent);
+    Task<IEnumerable<TrainComponent>> GetPaginatedListAsync(
+            Specification<TrainComponent> specification,
+            int pageSize,
+            int pageNumber,
+            string sortColumn,
+            string sortOrder,
+            CancellationToken cancellationToken);
+
+    IQueryable<TrainComponent> GetByCondition(Specification<TrainComponent> specification);
+    int GetTotalCount(Specification<TrainComponent> specification);
 }

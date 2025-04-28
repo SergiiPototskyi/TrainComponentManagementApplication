@@ -8,16 +8,16 @@ using TCMApp.Server.UseCases.UpdateTrainComponent;
 
 namespace TCMApp.Server.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/train-components")]
     [ApiController]
     public class TrainComponentsController(ISender mediator) : ControllerBase
     {
         [HttpGet]
         [ProducesResponseType(typeof(GetTrainComponentListResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(TrainComponentResponse), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetTrainComponents(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetTrainComponents([FromQuery] GetTrainComponentListRequest request, CancellationToken cancellationToken)
         {
-            var result = await mediator.Send(new GetTrainComponentListRequest(), cancellationToken);
+            var result = await mediator.Send(request, cancellationToken);
             if (!result.Succeeded)
             {
                 return BadRequest(result.Message);

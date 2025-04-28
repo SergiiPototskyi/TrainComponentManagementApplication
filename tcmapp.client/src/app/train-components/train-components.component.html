@@ -1,0 +1,74 @@
+<div class="flex mb-5">
+  <form>
+    <p-inputGroup>
+        <input #searchTerm type="text" [(ngModel)]="searchTerm.value" name="searchInput" pInputText placeholder="Search" (ngSubmit)="onSearchClick(searchTerm.value)" />
+        <button type="submit" pButton icon="pi pi-search" (click)="onSearchClick(searchTerm.value)" class="p-button-info"></button>
+    </p-inputGroup>
+  </form>
+</div>
+
+<p-table *ngIf="isLoading" [value]="[1, 2, 3, 4, 5]" responsiveLayout="scroll">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Unique Number</th>
+      <th>Can Assign Quantity</th>
+      <th>Quantity</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /></td>
+    </tr>
+  </ng-template>
+</p-table>
+<p *ngIf="!isLoading && trainComponents.length < 1">No records found</p>
+<p-table
+  [value]="trainComponents" 
+  [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true"
+  [lazy]="true" 
+  [paginator]="true"
+  [rows]="10" 
+  [totalRecords]="totalRecords"
+  (onLazyLoad)="loadItemsLazy($event)" 
+  [rowsPerPageOptions]="[10, 25, 50]"
+  [totalRecords]="totalRecords">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id">Id <p-sortIcon field="id" /></th>
+      <th pSortableColumn="name">Name<p-sortIcon field="name" /></th>
+      <th pSortableColumn="uniqueNumber">Unique Number<p-sortIcon field="uniqueNumber" /></th>
+      <th pSortableColumn="canAssignQuantity">Can Assign Quantity<p-sortIcon field="canAssignQuantity" /></th>
+      <th pSortableColumn="quantity">Quantity<p-sortIcon field="quantity" /></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-trainItem>
+    <tr>
+      <td>{{ trainItem.id }}</td>
+      <td>{{ trainItem.name }}</td>
+      <td>{{ trainItem.uniqueNumber }}</td>
+      <td>
+        <p-tag [severity]="getStatus(trainItem.canAssignQuantity)" [value]="getStatusValue(trainItem.canAssignQuantity)" />
+      </td>
+      <td>{{ trainItem.quantity }}</td>
+      <td>
+        <button pButton pRipple
+          icon="pi pi-trash" 
+          (click)="onDeleteClick(trainItem.id)"></button>
+      </td>
+      <td>
+        <button
+          pButton pRipple severity="secondary"
+          icon="pi pi-pen-to-square" (click)="onEditClick(trainItem.id)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
