@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TCMApp.Server.UseCases.AddTrainComponent;
+using TCMApp.Server.UseCases.DeleteTrainComponent;
 using TCMApp.Server.UseCases.GetTrainComponent;
 using TCMApp.Server.UseCases.GetTrainComponentList;
 using TCMApp.Server.UseCases.Models;
@@ -52,7 +53,7 @@ namespace TCMApp.Server.Controllers
                 return BadRequest(result.Message);
             }
 
-            return Ok(result.Value!.Id);
+            return Ok(result.Value);
         }
 
         [HttpPut]
@@ -67,6 +68,20 @@ namespace TCMApp.Server.Controllers
             }
 
             return Ok(result.Value);
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(TrainComponentResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(TrainComponentResponse), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteTrainComponent(int id, CancellationToken cancellationToken)
+        {
+            var result = await mediator.Send(new DeleteTrainComponentRequest(id), cancellationToken);
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok();
         }
     }
 }

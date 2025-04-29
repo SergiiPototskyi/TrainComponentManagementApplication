@@ -1,5 +1,5 @@
 export interface TrainComponent {
-	id: string;
+	id: number;
 	name: string;
 	uniqueNumber: string;
 	canAssignQuantity: boolean;

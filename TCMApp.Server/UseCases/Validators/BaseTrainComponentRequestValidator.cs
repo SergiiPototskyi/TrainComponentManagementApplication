@@ -12,12 +12,13 @@ public class BaseTrainComponentRequestValidator<T> : AbstractValidator<T> where 
             .WithMessage("Name is required");
 
         RuleFor(x => x.CanAssignQuantity)
-            .NotEmpty()
+            .NotNull()
             .WithMessage("CanAssignQuantity is required");
 
         RuleFor(x => x.Quantity)
-            .GreaterThan(0)
-            .When(x => x.CanAssignQuantity)
+            .NotNull().When(x => x.CanAssignQuantity == true)
+            .WithMessage("Quantity must be a positive number")
+            .GreaterThan(0).When(x => x.CanAssignQuantity == true)
             .WithMessage("Quantity must be a positive number");
 
         RuleFor(x => x.Quantity)

@@ -17,20 +17,32 @@ import { TagModule } from 'primeng/tag';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { AddTrainComponentComponent } from './add-train-component/add-train-component.component';
+import { DialogModule } from 'primeng/dialog';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckboxModule } from 'primeng/checkbox';
+import { TooltipModule } from 'primeng/tooltip';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
     AppComponent,
     TrainComponentsComponent,
-    HomeComponent
+    HomeComponent,
+    AddTrainComponentComponent
   ],
   imports: [
-    BrowserModule, BrowserAnimationsModule, HttpClientModule,
+    BrowserModule, BrowserAnimationsModule, HttpClientModule, FormsModule, ReactiveFormsModule,
     AppRoutingModule,
     TableModule, ButtonModule, InputTextModule, SkeletonModule, DataViewModule, TagModule, PaginatorModule,
-    InputGroupModule, InputGroupAddonModule
+    InputGroupModule, InputGroupAddonModule, ConfirmDialogModule, ToastModule, DialogModule, FloatLabelModule,
+    CheckboxModule, TooltipModule, InputNumberModule
   ],
-  providers: [],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

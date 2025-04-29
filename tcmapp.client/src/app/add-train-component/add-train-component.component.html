@@ -1,0 +1,21 @@
+<form [formGroup]="addItemForm" (ngSubmit)="onSubmit()" class="form-container">
+  <div class="pt-2">
+    <input id="name" formControlName="name" type="text" pInputText class="w-full" placeholder="Name" />
+  </div>
+  <div class="pt-4">
+    <input id="uniqueNumber" formControlName="uniqueNumber" type="text" pInputText class="w-full"
+      placeholder="Unique Number" />
+  </div>
+  <div class="pt-4">
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <p-checkbox formControlName="canAssignQuantity" pTooltip="Can Assign Quantity" binary="true"
+          tooltipPosition="top"></p-checkbox>
+      </p-inputGroupAddon>
+      <p-inputNumber id="quantity" formControlName="quantity" pInputText class="w-full" placeholder="Quantity" />
+    </p-inputGroup>
+  </div>
+  <div class="pt-4">
+    <button pButton pRipple label="Add" icon="pi pi-book" class="w-full" [loading]="isLoading" type="submit"></button>
+  </div>
+</form>

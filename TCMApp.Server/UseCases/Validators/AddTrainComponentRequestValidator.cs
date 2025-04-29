@@ -8,7 +8,7 @@ public class AddTrainComponentRequestValidator : BaseTrainComponentRequestValida
 {
     private readonly ITrainComponentRepository _repository;
 
-    public AddTrainComponentRequestValidator(ITrainComponentRepository repository)
+    public AddTrainComponentRequestValidator(ITrainComponentRepository repository) : base()
     {
         _repository = repository;
 

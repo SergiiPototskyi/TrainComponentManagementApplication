@@ -1,12 +1,13 @@
-<div class="flex mb-5">
+<p-confirmDialog />
+<div class="flex gap-2 mb-5">
   <form>
     <p-inputGroup>
         <input #searchTerm type="text" [(ngModel)]="searchTerm.value" name="searchInput" pInputText placeholder="Search" (ngSubmit)="onSearchClick(searchTerm.value)" />
         <button type="submit" pButton icon="pi pi-search" (click)="onSearchClick(searchTerm.value)" class="p-button-info"></button>
     </p-inputGroup>
-  </form>
+  </form>  
+  <button pButton severity="secondary" class="pi pi-plus" (click)="onAddClick()"></button>
 </div>
-
 <p-table *ngIf="isLoading" [value]="[1, 2, 3, 4, 5]" responsiveLayout="scroll">
   <ng-template pTemplate="header">
     <tr>
@@ -15,10 +16,14 @@
       <th>Unique Number</th>
       <th>Can Assign Quantity</th>
       <th>Quantity</th>
+      <th></th>
+      <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>
     <tr>
+      <td><p-skeleton /></td>
+      <td><p-skeleton /></td>
       <td><p-skeleton /></td>
       <td><p-skeleton /></td>
       <td><p-skeleton /></td>
@@ -72,3 +77,9 @@
     </tr>
   </ng-template>
 </p-table>
+
+<p-dialog [(visible)]="displayAddDialog" [modal]="true" *ngIf="displayAddDialog" class="w-full"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '50vw' }" [draggable]="false"
+  [resizable]="false" [closable]="true" (onHide)="closeAddDialog()" header="Add train component">
+  <add-train-component (success)="onTrainComponentAdded($event)"></add-train-component>
+</p-dialog>
