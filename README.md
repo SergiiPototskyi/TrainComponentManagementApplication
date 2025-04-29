@@ -27,3 +27,8 @@ Install via:
 ```bash
 npm install -g @angular/cli
 ```
+
+# How to run
+1. Open solution in Visual Studio
+2. Set TCMApp.Server as startup project
+3. Run app (frontend will be launched automaticaly as SPA proxy)
