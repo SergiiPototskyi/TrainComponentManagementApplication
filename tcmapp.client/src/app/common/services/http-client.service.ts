@@ -36,7 +36,7 @@ export class HttpClientService {
     if (error.error instanceof ErrorEvent) {
       errorMessage = `Client error: ${error.error.message}`;
     } else {
-      errorMessage = `Server error ${error.status}: ${error.error}`;
+      errorMessage = `Server error ${error.status}: ${error.error.title ?? error.error}`;
     }
     this.notificationService.showError(errorMessage);
 

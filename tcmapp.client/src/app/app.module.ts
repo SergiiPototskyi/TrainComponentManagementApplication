@@ -27,13 +27,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { EditTrainComponentComponent } from './edit-train-component/edit-train-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TrainComponentsComponent,
     HomeComponent,
-    AddTrainComponentComponent
+    AddTrainComponentComponent,
+    EditTrainComponentComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, HttpClientModule, FormsModule, ReactiveFormsModule,

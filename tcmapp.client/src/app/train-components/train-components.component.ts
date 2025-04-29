@@ -24,6 +24,8 @@ export class TrainComponentsComponent implements OnInit {
   totalRecords: number = 0;
 
   displayAddDialog: boolean = false;
+  displayEditDialog: boolean = false;
+  trainComponendId!: number;
 
   constructor(
     private httpService: HttpClientService,
@@ -106,7 +108,8 @@ export class TrainComponentsComponent implements OnInit {
   }
 
   onEditClick(id: number) {
-    console.log('Edit')
+    this.trainComponendId = id;
+    this.displayEditDialog = true;
   }
 
   onSearchClick(searchTerm: string) {
@@ -134,5 +137,19 @@ export class TrainComponentsComponent implements OnInit {
   onTrainComponentAdded(trainComponent: TrainComponent) {
     this.trainComponents.push(trainComponent);
     this.closeAddDialog();
+  }
+
+  closeEditDialog() {
+    this.displayEditDialog = false;
+  }
+
+  onTrainComponentUpdated(updatedComponent: TrainComponent) {
+    const index = this.trainComponents.findIndex(tc => tc.id === updatedComponent.id);
+
+    if (index !== -1) {
+      this.trainComponents[index] = { ...updatedComponent };
+    }
+  
+    this.closeEditDialog();
   }
 }

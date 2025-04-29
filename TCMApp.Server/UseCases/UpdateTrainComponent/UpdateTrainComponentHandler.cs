@@ -18,7 +18,7 @@ namespace TCMApp.Server.UseCases.UpdateTrainComponent
         {
             try
             {
-                var validationResult = validator.Validate(request);
+                var validationResult = await validator.ValidateAsync(request);
                 if (!validationResult.IsValid)
                 {
                     return Result<TrainComponentResponse>.Failure(validationResult.Errors);

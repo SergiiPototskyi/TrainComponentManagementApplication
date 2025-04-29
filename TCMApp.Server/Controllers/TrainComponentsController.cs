@@ -18,6 +18,7 @@ namespace TCMApp.Server.Controllers
         [ProducesResponseType(typeof(TrainComponentResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetTrainComponents([FromQuery] GetTrainComponentListRequest request, CancellationToken cancellationToken)
         {
+            throw new NotImplementedException("This method is not implemented yet");
             var result = await mediator.Send(request, cancellationToken);
             if (!result.Succeeded)
             {
@@ -47,6 +48,7 @@ namespace TCMApp.Server.Controllers
         [ProducesResponseType(typeof(TrainComponentResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateTrainComponent(AddTrainComponentRequest request, CancellationToken cancellationToken)
         {
+            return BadRequest("tesdfsd");
             var result = await mediator.Send(request, cancellationToken);
             if (!result.Succeeded)
             {
@@ -56,11 +58,16 @@ namespace TCMApp.Server.Controllers
             return Ok(result.Value);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [ProducesResponseType(typeof(TrainComponentResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(TrainComponentResponse), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateTrainComponent(UpdateTrainComponentRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateTrainComponent(int id, UpdateTrainComponentRequest request, CancellationToken cancellationToken)
         {
+            if (id != request.Id)
+            {
+                return BadRequest("Id does not match");
+            }
+
             var result = await mediator.Send(request, cancellationToken);
             if (!result.Succeeded)
             {

@@ -1,4 +1,5 @@
 using TCMApp.Server.Data;
+using TCMApp.Server.ExceptionHandlers;
 
 namespace TCMApp.Server
 {
@@ -18,6 +19,9 @@ namespace TCMApp.Server
             builder.Services.ConfigureServices();
             builder.ConfigureDataDependencies();
 
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+            builder.Services.AddProblemDetails();
+
             var app = builder.Build();
 
             app.UseDefaultFiles();
@@ -35,6 +39,7 @@ namespace TCMApp.Server
 
             app.UseAuthorization();
 
+            app.UseExceptionHandler();
 
             app.MapControllers();
 

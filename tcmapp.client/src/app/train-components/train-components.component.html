@@ -83,3 +83,10 @@
   [resizable]="false" [closable]="true" (onHide)="closeAddDialog()" header="Add train component">
   <add-train-component (success)="onTrainComponentAdded($event)"></add-train-component>
 </p-dialog>
+
+<p-dialog [(visible)]="displayEditDialog" [modal]="true" *ngIf="displayEditDialog" class="w-full"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '50vw' }" [draggable]="false"
+  [resizable]="false" [closable]="true" (onHide)="closeEditDialog()" header="Edit train component">
+  <edit-train-component [trainComponentId]="trainComponendId" (success)="onTrainComponentUpdated($event)"></edit-train-component>
+</p-dialog>
+
