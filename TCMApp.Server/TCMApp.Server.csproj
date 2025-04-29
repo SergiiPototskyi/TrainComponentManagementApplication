@@ -7,6 +7,7 @@
     <SpaRoot>..\tcmapp.client</SpaRoot>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:52238</SpaProxyServerUrl>
+    <UserSecretsId>534faf82-47ca-4c81-b95e-24b11816a73e</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.11.0" />
@@ -25,9 +26,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TCMApp.Application\TCMApp.Application.csproj" />
     <ProjectReference Include="..\tcmapp.client\tcmapp.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\TCMApp.Infrastructure\TCMApp.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "tcmapp.client", "tcmapp.client\tcmapp.client.esproj", "{D1B86048-6E18-9801-3688-5F29B0E84752}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCMApp.Server", "TCMApp.Server\TCMApp.Server.csproj", "{D21B96F8-7198-4E6B-BA65-439BB4E95A67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCMApp.Infrastructure", "TCMApp.Infrastructure\TCMApp.Infrastructure.csproj", "{56A0B257-AE21-49AD-8D93-69EC148118C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCMApp.Application", "TCMApp.Application\TCMApp.Application.csproj", "{8F8F3F89-6832-4BAC-BE81-68612139D6F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCMApp.Core", "TCMApp.Core\TCMApp.Core.csproj", "{91F599AE-55EA-48B4-9D73-199512EE5A59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +29,18 @@ Global
 		{D21B96F8-7198-4E6B-BA65-439BB4E95A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D21B96F8-7198-4E6B-BA65-439BB4E95A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D21B96F8-7198-4E6B-BA65-439BB4E95A67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56A0B257-AE21-49AD-8D93-69EC148118C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56A0B257-AE21-49AD-8D93-69EC148118C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56A0B257-AE21-49AD-8D93-69EC148118C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56A0B257-AE21-49AD-8D93-69EC148118C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F8F3F89-6832-4BAC-BE81-68612139D6F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F8F3F89-6832-4BAC-BE81-68612139D6F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F8F3F89-6832-4BAC-BE81-68612139D6F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F8F3F89-6832-4BAC-BE81-68612139D6F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F599AE-55EA-48B4-9D73-199512EE5A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F599AE-55EA-48B4-9D73-199512EE5A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F599AE-55EA-48B4-9D73-199512EE5A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F599AE-55EA-48B4-9D73-199512EE5A59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

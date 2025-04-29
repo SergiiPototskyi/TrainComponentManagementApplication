@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TCMApp.Server.UseCases.AddTrainComponent;
-using TCMApp.Server.UseCases.DeleteTrainComponent;
-using TCMApp.Server.UseCases.GetTrainComponent;
-using TCMApp.Server.UseCases.GetTrainComponentList;
-using TCMApp.Server.UseCases.Models;
-using TCMApp.Server.UseCases.UpdateTrainComponent;
+using TCMApp.Application.UseCases.AddTrainComponent;
+using TCMApp.Application.UseCases.DeleteTrainComponent;
+using TCMApp.Application.UseCases.GetTrainComponent;
+using TCMApp.Application.UseCases.GetTrainComponentList;
+using TCMApp.Application.UseCases.Models;
+using TCMApp.Application.UseCases.UpdateTrainComponent;
 
 namespace TCMApp.Server.Controllers
 {
@@ -18,7 +18,6 @@ namespace TCMApp.Server.Controllers
         [ProducesResponseType(typeof(TrainComponentResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetTrainComponents([FromQuery] GetTrainComponentListRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException("This method is not implemented yet");
             var result = await mediator.Send(request, cancellationToken);
             if (!result.Succeeded)
             {
@@ -48,7 +47,6 @@ namespace TCMApp.Server.Controllers
         [ProducesResponseType(typeof(TrainComponentResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateTrainComponent(AddTrainComponentRequest request, CancellationToken cancellationToken)
         {
-            return BadRequest("tesdfsd");
             var result = await mediator.Send(request, cancellationToken);
             if (!result.Succeeded)
             {

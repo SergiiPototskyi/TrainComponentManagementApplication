@@ -1,5 +1,6 @@
-using TCMApp.Server.Data;
 using TCMApp.Server.ExceptionHandlers;
+using TCMApp.Application;
+using TCMApp.Infrastructure;
 
 namespace TCMApp.Server
 {
@@ -17,7 +18,7 @@ namespace TCMApp.Server
             builder.Services.AddSwaggerGen();
 
             builder.Services.ConfigureServices();
-            builder.ConfigureDataDependencies();
+            builder.Services.ConfigureDataDependencies(builder.Configuration);
 
             builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
             builder.Services.AddProblemDetails();
